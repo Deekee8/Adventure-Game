@@ -89,7 +89,7 @@ def rescue_or_search(creature, items):
         items.append("door")
         print_pause("You begin to roll the door up and you see that the\n"
                     f"giant ninja {creature} is waiting to challenge you.\n")
-        elif "star" in items:
+        if "star" in items:
             print_pause("You've found the magic ninja star and you're\n"
                         "ready to face this evil creature!\n")
             print_pause(f"The giant ninja {creature} rushes toward you\n"
