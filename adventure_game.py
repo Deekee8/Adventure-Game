@@ -110,7 +110,7 @@ def rescue_or_search(creature, items):
                         "affection!\n")
             print_pause("You are the hero of your family forevermore!\n")
             print_pause("YOU WIN!\n")
-            items.remove("door", "star", "ladder")
+            items.clear()
             replay()
         else:
             print_pause("It lunges toward you but you haven't found a \n"
