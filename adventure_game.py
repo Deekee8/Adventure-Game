@@ -12,7 +12,7 @@ def print_pause(message):
     time.sleep(4)
 
 
-def intro(creature):
+def intro():
     print_pause("You awake to find yourself in a dark dungeon, with "
                 "nothing but the\njeans and t-shirt that you're "
                 "wearing.\n")
@@ -46,7 +46,7 @@ def input_error():
     print("I don't recogize that choice.\n")
 
 
-def fight_or_flee(creature, items):
+def fight_or_flee():
     f_or_f = input(f"A. Try to fight the {creature}\nB. Flee back "
                    "down to the dungeon\n(Enter A or B)\n").lower()
     if f_or_f == "a":
@@ -67,13 +67,14 @@ def fight_or_flee(creature, items):
                     "find a weapon\nto defeat the giant ninja "
                     f"{creature} with.\n")
         print_pause("What do you do next?\n")
-        escape_dungeon(creature, items)
+        escape_dungeon()
     else:
         input_error()
-        fight_or_flee(creature, items)
+        fight_or_flee()
 
 
-def rescue_or_search(creature, items):
+def rescue_or_search():
+    global items
     r_or_s = input("A. Try to open the roll-up door\nB. Search "
                    "through the dumpster to see what's causing "
                    "the glow\n(Enter 'A' or'B')\n").lower()
@@ -85,7 +86,7 @@ def rescue_or_search(creature, items):
                         "you without a weapon.\n")
             print_pause("Your son needs you to think fast.\n")
             print_pause("What's your next move?\n")
-            rescue_or_search(creature, items)
+            rescue_or_search()
         items.append("door")
         print_pause("You begin to roll the door up and you see that the\n"
                     f"giant ninja {creature} is waiting to challenge you.\n")
@@ -110,21 +111,21 @@ def rescue_or_search(creature, items):
                         "affection!\n")
             print_pause("You are the hero of your family forevermore!\n")
             print_pause("YOU WIN!\n")
-            items.clear()
+            items = []
             replay()
         else:
             print_pause("It lunges toward you but you haven't found a \n"
                         "suitable weapon to fight with yet.\n")
             print_pause("You slam the door closed and ponder what to do "
                         "next.\n")
-            rescue_or_search(creature, items)
+            rescue_or_search()
     elif r_or_s == "b":
         if "star" in items:
             print_pause("It looks like some of the magic dust rubbed\n"
                         "off of your new ninja star.\n")
             print_pause("You already got the useful part.\n")
             print_pause("What's next?\n")
-            rescue_or_search(creature, items)
+            rescue_or_search()
         items.append("star")
         print_pause("You dig through the muck in the dumpster "
                     "until you find\na glowing green ninja star!\n")
@@ -132,13 +133,13 @@ def rescue_or_search(creature, items):
                     "a ninja star!\n")
         print_pause("...and this one looks like it has magical powers!\n")
         print_pause("What do you do next?\n")
-        rescue_or_search(creature, items)
+        rescue_or_search()
     else:
         input_error()
-        rescue_or_search(creature, items)
+        rescue_or_search()
 
 
-def escape_dungeon(creature, items):
+def escape_dungeon():
     escape = input("A. Take the ladder up to find "
                    "your son\nB. Continue down the tunnel "
                    "to find a way out\n(Enter A or B)\n").lower()
@@ -148,7 +149,7 @@ def escape_dungeon(creature, items):
                         f"to battle the giant ninja {creature}.\n")
             print_pause("You should find a way out of the dungeon.\n")
             print_pause("What would you like to do?\n")
-            escape_dungeon(creature, items)
+            escape_dungeon()
         print_pause("You climb up the ladder and push aside the "
                     "heavy wooden plank\nthat is covering "
                     "the opening.\n")
@@ -159,7 +160,7 @@ def escape_dungeon(creature, items):
                     f"ninja {creature}\nsuddenly appears to stop you.\n")
         print_pause("You don't have any weapons or fighting skills.\n")
         print_pause("What do you do next?\n")
-        fight_or_flee(creature, items)
+        fight_or_flee()
     elif escape == "b":
         print_pause("You head down the damp tunnel until you "
                     "reach a ramp\nthat leads up to a sewage grate.\n")
@@ -177,15 +178,15 @@ def escape_dungeon(creature, items):
                     "don't have the fighting skills to defeat the\ngiant "
                     f"ninja {creature}.\n")
         print_pause("What do you do next?\n")
-        rescue_or_search(creature, items)
+        rescue_or_search()
     else:
         input_error()
-        escape_dungeon(creature, items)
+        escape_dungeon()
 
 
 def main_gameplay():
-    intro(creature)
-    escape_dungeon(creature, items)
+    intro()
+    escape_dungeon()
 
 
 main_gameplay()
